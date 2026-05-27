@@ -11,8 +11,7 @@ CFLAGS					= -Wall -Werror -Wextra -I$(LIBFT_PATH) -I$(MLX_PATH) -MMD -MP
 C_FILES					= main.c \
 						  burning_ship.c \
 						  colors.c \
-						  complex.c \
-						  fractals_db.c \
+						   fractals_db.c \
 						  julia.c
 
 O_FILES					= $(patsubst %.c, %.o, $(C_FILES))
@@ -26,6 +25,9 @@ $(MLX):
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH) all
+
+$(OBJ_DIR):
+	@mkdir -p $@
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(O_FILES)
 	$(CC) $(CFLAGS) -o $@ $(O_FILES) $(MLX) $(LIBFT) -lXext -lX11 -lm
